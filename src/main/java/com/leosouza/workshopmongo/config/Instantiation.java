@@ -12,17 +12,18 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-public class Test implements CommandLineRunner {
+public class Instantiation implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
+        userRepository.deleteAll();
         User leo = new User(null, "leo", "leonardo@gmail.com");
         User bira = new User(null, "bira", "bira@gmail.com");
         User magro = new User(null, "magro", "magro@gmail.com");
         List<User> list = new ArrayList<>(Arrays.asList(leo, bira, magro));
-//        userRepository.saveAll(list);
+        userRepository.saveAll(list);
     }
 }
