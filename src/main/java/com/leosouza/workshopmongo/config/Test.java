@@ -23,7 +23,6 @@ public class Test implements CommandLineRunner {
         User bira = new User(null, "bira", "bira@gmail.com");
         User magro = new User(null, "magro", "magro@gmail.com");
         List<User> list = new ArrayList<>(Arrays.asList(leo, bira, magro));
-        userRepository.saveAll(list);
-
+//        userRepository.saveAll(list);
     }
 }
