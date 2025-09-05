@@ -2,6 +2,7 @@ package com.leosouza.workshopmongo.services;
 
 import com.leosouza.workshopmongo.controller.exceptions.ObjectNotFoundExcpetion;
 import com.leosouza.workshopmongo.domain.User;
+import com.leosouza.workshopmongo.dto.UserDTO;
 import com.leosouza.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,13 @@ public class UserService {
     public User findById(String id) {
         Optional<User> user = userRepository.findById(id);
        return user.orElseThrow(() -> new ObjectNotFoundExcpetion("Objeto não encontrado" + id));
+    }
+
+    public User insert(User user) {
+        return userRepository.save(user);
+    }
+
+    public User fromDTO(UserDTO objDto) {
+        return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
     }
 }
