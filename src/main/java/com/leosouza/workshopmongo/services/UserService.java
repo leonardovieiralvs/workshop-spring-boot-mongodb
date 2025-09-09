@@ -22,7 +22,7 @@ public class UserService {
 
     public User findById(String id) {
         Optional<User> user = userRepository.findById(id);
-       return user.orElseThrow(() -> new ObjectNotFoundExcpetion("Objeto não encontrado" + id));
+        return user.orElseThrow(() -> new ObjectNotFoundExcpetion("Objeto não encontrado" + id));
     }
 
     public User insert(User user) {
@@ -31,5 +31,16 @@ public class UserService {
 
     public User fromDTO(UserDTO objDto) {
         return new User(objDto.getId(), objDto.getName(), objDto.getEmail());
+    }
+
+    public User update(String id, User obj) {
+        Optional<User> user = userRepository.findById(id);
+        updateData(user, obj);
+        return userRepository.save(user);
+    }
+
+    private void updateData(User newObj, User obj) {
+        obj.setName(newObj.getName());
+        obj.setEmail(newObj.getEmail());
     }
 }
