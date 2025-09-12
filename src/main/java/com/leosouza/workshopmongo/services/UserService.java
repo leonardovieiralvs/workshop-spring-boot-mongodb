@@ -34,9 +34,9 @@ public class UserService {
     }
 
     public User update(String id, User obj) {
-        Optional<User> user = userRepository.findById(id);
-        updateData(user, obj);
-        return userRepository.save(user);
+        User newObj = new User(id, obj.getName(), obj.getEmail());
+        updateData(newObj, obj);
+        return userRepository.save(newObj);
     }
 
     private void updateData(User newObj, User obj) {
