@@ -1,5 +1,6 @@
 package com.leosouza.workshopmongo.controller;
 
+import com.leosouza.workshopmongo.domain.Post;
 import com.leosouza.workshopmongo.domain.User;
 import com.leosouza.workshopmongo.dto.UserDTO;
 import com.leosouza.workshopmongo.services.UserService;
@@ -30,6 +31,12 @@ public class UserController {
     public ResponseEntity<User> findById(@PathVariable String id) {
         User user = userService.findById(id);
         return ResponseEntity.ok().body(user);
+    }
+
+    @GetMapping("users/{id}/posts")
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
+        User user = userService.findById(id);
+        return ResponseEntity.ok().body(user.getPosts());
     }
 
     @PostMapping
