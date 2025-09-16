@@ -1,6 +1,7 @@
 package com.leosouza.workshopmongo.config;
 
 
+import com.leosouza.workshopmongo.domain.CommentDTO;
 import com.leosouza.workshopmongo.domain.Post;
 import com.leosouza.workshopmongo.domain.User;
 import com.leosouza.workshopmongo.dto.AuthorDTO;
@@ -38,12 +39,17 @@ public class Instantiation implements CommandLineRunner {
 
         Post post1 = new Post(null, sdf.parse("18/09/2025"), "Excelente", "Vou viajar para SP. Abraços", new AuthorDTO(leo));
         Post post2 = new Post(null, sdf.parse("28/09/2025"), "Excelenix", "Vou viajar para RJ. Abraços", new AuthorDTO(leo));
-        Post post3 = new Post(null, sdf.parse("15/02/2024"), "Receba", "Vou viajar para ES. Abraços", new AuthorDTO(bira));
-        postRepository.saveAll(Arrays.asList(post1, post2, post3));
+
+        CommentDTO comment1 = new CommentDTO("Boa viagem mano!", sdf.parse("18/09/2025"), new AuthorDTO(leo));
+        CommentDTO comment2 = new CommentDTO("Aproveite!", sdf.parse("18/09/2025"), new AuthorDTO(bira));
+        CommentDTO comment3 = new CommentDTO("Tenha um otimo dia!", sdf.parse("28/09/2025"), new AuthorDTO(magro));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment2));
+        post2.getComments().add(comment3);
+
+        postRepository.saveAll(Arrays.asList(post1, post2));
 
         leo.getPosts().addAll(Arrays.asList(post1, post2));
-        bira.getPosts().add(post3);
-        userRepository.saveAll(Arrays.asList(leo, bira));
-
+        userRepository.save(leo);
     }
 }
