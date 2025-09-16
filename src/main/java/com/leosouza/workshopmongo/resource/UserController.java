@@ -1,4 +1,4 @@
-package com.leosouza.workshopmongo.controller;
+package com.leosouza.workshopmongo.resource;
 
 import com.leosouza.workshopmongo.domain.Post;
 import com.leosouza.workshopmongo.domain.User;
@@ -33,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok().body(user);
     }
 
-    @GetMapping("users/{id}/posts")
+    @GetMapping("users/{id}")
     public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {
         User user = userService.findById(id);
         return ResponseEntity.ok().body(user.getPosts());

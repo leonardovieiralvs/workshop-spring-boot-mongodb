@@ -1,6 +1,6 @@
 package com.leosouza.workshopmongo.services;
 
-import com.leosouza.workshopmongo.controller.exceptions.ObjectNotFoundExcpetion;
+import com.leosouza.workshopmongo.resource.exceptions.ObjectNotFoundExcpetion;
 import com.leosouza.workshopmongo.domain.User;
 import com.leosouza.workshopmongo.dto.UserDTO;
 import com.leosouza.workshopmongo.repository.UserRepository;

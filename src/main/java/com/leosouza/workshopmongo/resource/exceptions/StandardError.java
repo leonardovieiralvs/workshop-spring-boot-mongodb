@@ -1,4 +1,4 @@
-package com.leosouza.workshopmongo.controller.exceptions;
+package com.leosouza.workshopmongo.resource.exceptions;
 
 import java.io.Serializable;
 
